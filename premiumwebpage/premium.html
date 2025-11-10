@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Access</title>
+  <link rel="stylesheet" href="../style.css">
+  
+</head>
+<body>
+  <div class="premium-container">
+    <div class="premium-title">Choose Your Premium Tier</div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-title">Free</div>
+        <div class="tier-price">$0/month</div>
+        <ul style="text-align:left; margin: 0 0 12px 0; padding-left: 18px;">
+          <li>Basic features</li>
+          <li>Limited support</li>
+        </ul>
+        // free tier
+        <button class="tier-btn" onclick="selectTier('Free')">Select</button>
+      </div>
+      <div class="tier">
+        <div class="tier-title">Basic</div>
+        <div class="tier-price">$9.99/month</div>
+        <ul style="text-align:left; margin: 0 0 12px 0; padding-left: 18px;">
+          <li>All Free features</li>
+          <li>Priority support</li>
+          <li>More widgets</li>
+        </ul>
+        <button class="tier-btn" onclick="selectTier('Basic')">Select</button>
+      </div>
+      <div class="tier">
+        <div class="tier-title">YOU GOT MONEYYYY</div>
+        <div class="tier-price">$1500/month</div>
+        <ul style="text-align:left; margin: 0 0 12px 0; padding-left: 18px;">
+          <li>All Basic features</li>
+          <li>Personal assistant</li>
+          <li>VIP everything</li>
+        </ul>
+        <button class="tier-btn" id="moneyBtn">Select</button>
+      </div>
+    </div>
+    <div id="confettiMsg"></div>
+    <a href="../to do project.html" class="back-btn">Back to Main</a>
+  </div>
+  <script>
+    function selectTier(tier) {
+      alert('You selected the ' + tier + ' package!');
+    }
+    // Confetti animation for "YOU GOT MONEYYYY"
+    document.getElementById('moneyBtn').onclick = function(e) {
+      e.preventDefault();
+      showConfetti();
+      document.getElementById('confettiMsg').innerHTML = '<div class="confetti-message">OOOOO YOU REALLY GOT MONEYYY</div>';
+    };
+    function showConfetti() {
+      for (let i = 0; i < 120; i++) {
+        let conf = document.createElement('div');
+        conf.style.position = 'fixed';
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.top = '-40px';
+        conf.style.width = '12px';
+        conf.style.height = '18px';
+        conf.style.background = ['#bfa046','#fffbe6','#e0e0e0','#181818'][Math.floor(Math.random()*4)];
+        conf.style.opacity = 0.85;
+        conf.style.borderRadius = '4px';
+        conf.style.zIndex = 9999;
+        conf.style.transform = 'rotate(' + (Math.random()*360) + 'deg)';
+        conf.style.transition = 'top 1.8s cubic-bezier(.77,0,.18,1), left 1.8s cubic-bezier(.77,0,.18,1)';
+        document.body.appendChild(conf);
+        setTimeout(() => {
+          conf.style.top = (60 + Math.random()*30) + 'vh';
+          conf.style.left = (Math.random()*100) + 'vw';
+        }, 10);
+        setTimeout(() => {
+          conf.remove();
+        }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>

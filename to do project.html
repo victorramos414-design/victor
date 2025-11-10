@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Sleek Webpage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+      <section id="home">
+      <h1>Welcome to the Page</h1>
+      <a href="premiumwebpage/premium.html" class="premium-btn">Go Premium</a>
+    </section>
+  <!-- Sidebar Toggle Button -->
+  <button id="openSidebarBtn" onclick="openSidebar()" class="sidebar-toggle">☰</button>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar" id="mySidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+    <a href="#home">Home</a>
+    <a href="#weather">Weather</a>
+    <a href="#plans">Future Plans</a>
+    <a href="#feedback">Feedback</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- TODAY Section -->
+    <section id="today" class="today-section">
+      <h2 class="today-title">TODAY</h2>
+      <div class="today-widgets">
+        <div class="weather-widget" id="weatherWidget">
+          <h3>Weather</h3>
+          <div class="city-control">
+            <input type="text" id="cityInput" placeholder="Enter city (e.g. London)">
+            <button id="setCityBtn">Set City</button>
+            <div id="currentCity" style="margin-top:8px;font-size:0.9rem;color:#e0e0e0;"></div>
+          </div>
+          <div id="weatherData">Loading weather...</div>
+        </div>
+        <div class="events-widget" id="eventsWidget">
+          <h3>Current Events</h3>
+          <div id="eventsData">Loading events...</div>
+        </div>
+        <div class="tasks-widget" id="tasksWidget">
+          <h3>Tasks</h3>
+          <div class="task-bar">
+            <input type="text" id="newTaskInput" placeholder="Add a new task...">
+            <button id="addTaskBtn">Add</button>
+          </div>
+          <ul id="taskList" class="task-list"></ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
