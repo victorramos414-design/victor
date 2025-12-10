@@ -9,6 +9,22 @@
   <meta charset="UTF-8"> <!-- Character encoding for Unicode support -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobile responsive scaling -->
   <title>Feedback</title> <!-- Browser tab title -->
+  <!-- Auth expiration check: force logout when session expires (24h) -->
+  <script>
+    (function(){
+      try{
+        const raw = localStorage.getItem('authSession');
+        if(!raw){ window.location.href='login.html'; return; }
+        const session = JSON.parse(raw);
+        if(!session.expiresAt || Date.now() > session.expiresAt){
+          localStorage.removeItem('authSession'); localStorage.removeItem('isAuthenticated'); window.location.href='login.html'; return;
+        }
+        const remaining = session.expiresAt - Date.now();
+        if(remaining>0){ setTimeout(()=>{ localStorage.removeItem('authSession'); localStorage.removeItem('isAuthenticated'); window.location.replace('login.html'); }, remaining); }
+        setInterval(()=>{ const s = localStorage.getItem('authSession'); if(!s) window.location.href='login.html'; try{ const ss=JSON.parse(s||'null'); if(!ss||!ss.expiresAt||Date.now()>ss.expiresAt){ localStorage.removeItem('authSession'); localStorage.removeItem('isAuthenticated'); window.location.href='login.html'; } }catch(e){ localStorage.removeItem('authSession'); localStorage.removeItem('isAuthenticated'); window.location.href='login.html'; } }, 60000);
+      }catch(e){ localStorage.removeItem('authSession'); localStorage.removeItem('isAuthenticated'); window.location.href='login.html'; }
+    })();
+  </script>
   <link rel="stylesheet" href="style.css"> <!-- Main CSS file -->
 </head>
 <body>
@@ -21,6 +37,7 @@
     <a href="to-do-project.html#home">Home</a> <!-- Link to dashboard -->
     <a href="future.html">Future Plans</a> <!-- Link to calendar -->
     <a href="feedback.html">Feedback</a> <!-- Link to feedback form (this page) -->
+    <a href="about.html">About Us</a>
   </nav>
 
   <!-- Main Content: feedback form and submission -->
